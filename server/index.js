@@ -11,6 +11,12 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 
+app.get('/', (req, res) => res.send('INDEX'))
+
+app.use('/students', require('./routes/students'))
+
+app.use('/campuses', require('./routes/campuses'))
+
 database.sync().then(() =>{
     app.listen(PORT, () =>
         console.log(`Serving portmanteau since there were ports ${PORT}`)
