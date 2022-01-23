@@ -4,8 +4,12 @@ const Campus = require('./models/campuses')
 
 //associations
 
-Campus.belongsToMany(Student, {through: 'Teacher_Student'})
-// Student.belongsToOne(Campus, {through: 'Campus_Students'})
+Campus.hasMany(Student)
+Student.belongsTo(Campus, {
+    foreignKey: {
+        allowNull:false
+    }
+})
 
 module.exports = {
     database,
